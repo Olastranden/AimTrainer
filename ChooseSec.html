@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <link rel="stylesheet" href="ChoosetimeStyle.css">
+    <link rel="stylesheet" href="username.css">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AimTrainer</title>
+</head>
+<body style="position:relative; min-height:100vh;">
+
+    <div class="username-display" id="usernameDisplay" style="display:none;">
+        <span id="usernameText"></span>
+        <button id="changeUserButton" style="margin-left:10px; background:#d1e210; color:#222; border:none; border-radius:5px; padding:3px 10px; cursor:pointer; font-size:0.9em;">Bytt</button>
+    </div>
+    <h1>Choose your speed</h1>
+
+    
+    <p>Choose how long you want the round to be</p>
+
+    
+    <div class="choose-btn-container">
+        <button class="choose-btn" onclick="location.href='10Seconds.html'">10 Seconds</button>
+        <button class="choose-btn" onclick="location.href='20Seconds.html'">20 Seconds</button>
+        <button class="choose-btn" onclick="location.href='30Seconds.html'">30 Seconds</button>
+        <button class="choose-btn" onclick="location.href='40Seconds.html'">40 Seconds</button>
+    </div>
+
+   
+    <button class="GoBack-btn" onclick="location.href='index.html'">Go Back</button>
+
+    
+    <script>
+    // Dette starter fade-in animasjonen som er beskrevet i CSS
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('fade-in');
+
+        // Hent brukernavn fra localStorage og vis/skjul display-diven
+        const username = localStorage.getItem('username');
+        const display = document.getElementById('usernameDisplay');
+        const usernameText = document.getElementById('usernameText');
+        const changeBtn = document.getElementById('changeUserButton');
+        if (username) {
+            usernameText.textContent = username;
+            display.style.display = 'block';
+        } else {
+            display.style.display = 'none';
+        }
+        // Bytt-knapp: fjern brukernavn og oppdater visning
+        if (changeBtn) {
+            changeBtn.addEventListener('click', function() {
+                localStorage.removeItem('username');
+                usernameText.textContent = '';
+                display.style.display = 'none';
+            });
+        }
+    });
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+
+/* tekst boksen av resultatet */
+.aim-result {
+    margin-top: 40px;         /* Avstand fra toppen av boksen */
+    text-align: center;       /* Sentrerer teksten */
+    font-size: 2em;           /* Stor og tydelig tekst */
+    color: #222;              
+    background: #d1e21022;    
+    border-radius: 8px;       
+    padding: 20px;           
+}
+
+/* Heading */
+
+h1 {
+	color: #d1e210;
+	position: absolute;
+	top: 0;
+	left: 42%;
+	text-align: center;
+    font-size: 3em; /* størrlese på teksten */
+    font-weight: bold;
+}
+/* Paragraph */
+p {
+	color: #d1e210;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+}
+
+/* Bakgrunnsfarge for hele siden og fade-in/fade-ut overgang */
+body {
+    background-color: #1a1a1a;
+    opacity: 0; /* Start usynlig for fade-in */
+    transition: opacity 1.5s ease; /* Fade-in og fade-ut overgang, langsommere */
+}
+
+
+body.fade-in {
+    opacity: 1;
+}
+
+/* Overlay for fade-ut effekt ved sidebytte */
+.fade-overlay {
+    position: fixed;        /* Låser overlayen til hele skjermen */
+    top: 0;
+    left: 0;
+    width: 100vw;           /* Full bredde */
+    height: 100vh;          /* Full høyde */
+    background: #1a1a1a;    
+    opacity: 0;             /* Usynlig som standard */
+    pointer-events: none;   /* Lar deg klikke på alt under når usynlig */
+    transition: opacity 1.5s ease; /* Myk overgang på opacity, langsommere */
+    z-index: 9999;         
+}
+
+
+.fade-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* go back knappen */
+.GoBack-btn {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 2px solid #d1e210;
+    border-radius: 8px;
+    padding: 0.7em 1.5em;
+    font-size: 1.1em;
+    position: absolute;
+    cursor: pointer;
+    top: 2%;
+}
+
+.GoBack-btn:hover {
+    background-color: #d1e210;
+    color: #1a1a1a;
+}
+
+
+
+/* Firkant i midten av skjermen */
+.center-square {
+    width: 550px;
+	height: 500px;
+    background-color: #848d25;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0 0 20px #d1e21055;
+    border: 5px solid #ffffff;
+}
+
+/* leaderboard boksen */
+.Leaderboard {
+    width: 400px;
+    min-height: 200px;
+    background-color: #848d25;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    border-radius: 16px;
+    box-shadow: 0 0 30px #d1e21088;
+    border: 5px solid #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 32px 0 24px 0;
+}
+/* Leaderboard tittel */
+.leaderboard-title {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px #222;
+}
+
+
+/* Enkel boarder til entry */
+.leaderboard-entry {
+    background: #d1e21022;
+    color: #222;
+    font-size: 1.3em;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 12px 24px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 8px #d1e21033;
+    transition: background 0.2s;
+}
+
+
+
+/* sirkelen som skal bli trykket på */
+ .triangle {
+    width: 40px;
+    height: 40px;
+    background-color: #d1e210;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px #d1e21055;
+    display: block;
+    cursor: pointer;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Trekant */
+}
+
+/* Timer på toppen av firkanten */
+#Timer {
+    width: 100%;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+

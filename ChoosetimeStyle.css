@@ -1,0 +1,74 @@
+body.fade-in {
+    opacity: 1;
+}
+
+
+h1 {
+    color: #d1e210;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    margin-top: -0.2em;
+    margin-bottom: 0.2em;
+}
+
+p {
+    color: #d1e210;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.choose-btn-container {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+body {
+    background-color: #1a1a1a;
+    opacity: 0; /* gjør at fade in er usynlig i starten*/
+    transition: opacity 0.7s ease; /* fade in overgangen*/
+    overflow-y: hidden;
+}
+
+
+.choose-btn {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 2px solid #d1e210;
+    border-radius: 8px;
+    padding: 0.7em 1.5em;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+/* gjør at knappen ligger ved siden istede of opp hverandre */
+.choose-btn-container {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 10em;
+}
+
+.choose-btn:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.GoBack-btn {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 2px solid #d1e210;
+    border-radius: 8px;
+    padding: 0.7em 1.5em;
+    font-size: 1.1em;
+    position: absolute;
+    cursor: pointer;
+    top: 2%;
+}
+
+.GoBack-btn:hover {
+    background-color: #d1e210;
+    color: #1a1a1a;
+}

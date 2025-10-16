@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="FrontpageStyle.css">
+    <link rel="stylesheet" href="username.css">
+    <title>AimTrainer</title>
+</head>
+<body>
+
+    <p>tekst</p>
+    <!-- Brukernavn-boks oppe til høyre: input og lagre-knapp -->
+    <div class="username-container" id="usernameContainer">
+        <input type="text" id="usernameInput" placeholder="Skriv inn brukernavn">
+        <button id="saveButton">Lagre</button>
+    </div>
+    <!-- Viser brukernavn etter lagring, med knapp for å bytte brukernavn -->
+    <div class="username-display" id="usernameDisplay" style="display:none;">
+        <span id="usernameText"></span>
+        <button id="changeUserButton" style="margin-left:10px; background:#d1e210; color:#222; border:none; border-radius:5px; padding:3px 10px; cursor:pointer; font-size:0.9em;">Bytt</button>
+    </div>
+    <script>
+        // Viser brukernavn øverst til høyre hvis det er lagret, ellers viser input-feltet
+        function showUsername() {
+            const username = localStorage.getItem('username'); // Henter brukernavn fra localStorage
+            const display = document.getElementById('usernameDisplay');
+            const usernameText = document.getElementById('usernameText');
+            if (username) {
+                usernameText.textContent = username; // Viser brukernavn
+                display.style.display = 'block';
+                document.getElementById('usernameContainer').style.display = 'none'; // Skjuler input-feltet
+            } else {
+                display.style.display = 'none';
+                document.getElementById('usernameContainer').style.display = 'flex'; // Viser input-feltet
+            }
+        }
+        // Når du trykker på "Lagre"-knappen
+        document.getElementById('saveButton').addEventListener('click', function() {
+            const username = document.getElementById('usernameInput').value.trim(); // Henter tekst fra input
+            if (username) {
+                localStorage.setItem('username', username); // Lagrer brukernavn i nettleseren
+                showUsername(); // Oppdaterer visningen
+            }
+        });
+        // Kjør showUsername når siden lastes inn, så brukernavn vises automatisk hvis det er lagret
+        window.onload = showUsername;
+
+        // Legg til funksjon for å bytte brukernavn
+        document.addEventListener('DOMContentLoaded', function() {
+            const changeBtn = document.getElementById('changeUserButton');
+            if (changeBtn) {
+                changeBtn.addEventListener('click', function() {
+                    localStorage.removeItem('username'); // Sletter brukernavn
+                    document.getElementById('usernameInput').value = '';
+                    showUsername(); // Viser input-feltet igjen
+                });
+            }
+        });
+    </script>
+
+    <h1>Aim Trainer</h1>
+
+    
+    <p>Welcome to the Aim Trainer game! this is where you test your aim skills</p>
+
+    <!-- start knapp som også har fade animasjon -->
+    <button class="aimtrain-btn" onclick="fadeToPage('ChooseSec.html')">Start Game</button>
+
+    
+    <button class="attention-span-btn" onclick="playAttentionVideo()">Bad Attention span?</button>
+
+    <!-- Videobeholder, skjult som standard -->
+    <div id="video-container" style="display:none; position: absolute; right: 2%; top: 20%; width: 480px;">
+        <video id="attention-video" width="480" height="480" controls>
+            
+            <source src="cool/Subway Surfer Surviving 10 Minutes.mp4" type="video/mp4">
+           
+        </video>
+    </div>
+
+    <!-- Fade overlay for sideovergang -->
+    <div class="fade-overlay" id="fadeOverlay"></div>
+
+    <script>
+    
+    // funksjon som at vidoen blir spill vist noen trykker på bad attetion knappen 
+    function playAttentionVideo() {
+        const container = document.getElementById('video-container');
+        const video = document.getElementById('attention-video');
+        container.style.display = 'block'; 
+        video.currentTime = 0; 
+        video.play(); 
+    }
+
+    // lager en fade funksjon til når du går til en annen page
+    function fadeToPage(url) {
+        const overlay = document.getElementById('fadeOverlay');
+        overlay.classList.add('active');
+        setTimeout(function() {
+            window.location.href = url;
+        }, 700); // matcher CSS transition
+    }
+    </script>
+</body>
+
+push origin
+
+</html>

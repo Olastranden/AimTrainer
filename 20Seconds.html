@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Aiming.css">
+    <link rel="stylesheet" href="username.css">
+    <title>AimTrainer</title>
+</head>
+<body>
+    
+     <div class="username-display" id="usernameDisplay" style="display:none;">
+        <span id="usernameText"></span>
+        <button id="changeUserButton" style="margin-left:10px; background:#d1e210; color:#222; border:none; border-radius:5px; padding:3px 10px; cursor:pointer; font-size:0.9em;">Bytt</button>
+    </div>
+    <button class="GoBack-btn" onclick="fadeToPage('ChooseSec.html')">Go Back</button>
+
+    
+
+    
+    <div class="center-square">
+        <!-- Timer på toppen av firkanten -->
+        <div id="Timer">20 </div>
+    <div class="triangle" onclick="handleCircleClick()"></div>
+            
+    </div>
+
+<div class="Leaderboard"> 
+        <div class="leaderboard-title">Leaderboard</div>
+        <div class="leaderboard-entries">
+            <div class="leaderboard-entry">1. Ola - 27 points</div>
+            
+    </div>
+
+
+    <!-- Fade overlay for fade-ut overgang. Dekker hele skjermen ved sidebytte. -->
+    <div class="fade-overlay" id="fadeOverlay"></div>
+
+    <script>
+    
+    const timerElement = document.getElementById('Timer');
+    // Teller for antall klikk på sirkelen
+    let clickCount = 0; 
+    // Gjør clickCount og startCountdown globalt tilgjengelig for bruk i circle.js
+    window.incrementCircleClicks = function() {
+        clickCount++; // Øker antall klikk hver gang sirkelen trykkes
+    }
+    
+    let timeLeft = 20;
+    let countdownStarted = false; // Sjekker om timeren er startet
+    let countdown;
+
+    // Funksjon for å starte timeren
+    function startCountdown() {
+        if (countdownStarted) return; // Start kun én gang
+        countdownStarted = true;
+        countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            // Når tiden er ute, stopp nedtellingen
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                // Skjul sirkelen når tiden er ute
+                const circle = document.querySelector('.triangle');
+                if (circle) circle.style.display = 'none';
+                const container = document.querySelector('.center-square');
+                let message = '';
+                if (clickCount >= 35) {
+                    message = 'holy du burde være i en proff liga! du traff jo fader meg' + clickCount + ' ganger!';
+                } else if (clickCount >= 25) {
+                    message = 'damn du har bra aim se da --> ' + clickCount + ' ganger!';
+                } else {
+                    message = 'woho! du traff den ' + clickCount + ' ganger.';
+                }
+                
+                // Dette lager en ny <div> som skal vise resultatet inne i den grønne boksen
+                const resultDiv = document.createElement('div');
+                // Setter innholdet (teksten) i meldingen
+                resultDiv.innerHTML = message;
+                // Legger til CSS-klassen 'aim-result' for å få riktig utseende fra Aiming.css
+                resultDiv.className = 'aim-result';
+                // Legger resultat-diven inn i containeren (center-square)
+                container.appendChild(resultDiv);
+                timerElement.textContent = 'Ferdig!';
+            }
+        }, 1000); // 1000 ms = 1 sekund
+    }
+    window.startCountdown = startCountdown;
+
+    // Fade-in: Legg til 'fade-in' klasse når siden er klar
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('fade-in');
+    });
+
+    // Fade-ut og bytt side
+    function fadeToPage(url) {
+        const overlay = document.getElementById('fadeOverlay');
+        overlay.classList.add('active');
+        setTimeout(function() {
+            window.location.href = url;
+        }, 700); // Dette starter fade-in animasjonen som er beskrevet i CSS
+    }
+
+    // Hent brukernavn fra localStorage og vis/skjul display-diven
+        const username = localStorage.getItem('username');
+        const display = document.getElementById('usernameDisplay');
+        const usernameText = document.getElementById('usernameText');
+        const changeBtn = document.getElementById('changeUserButton');
+        if (username) {
+            usernameText.textContent = username;
+            display.style.display = 'block';
+        } else {
+            display.style.display = 'none';
+        }
+        // Bytt-knapp: fjern brukernavn og oppdater visning
+        if (changeBtn) {
+            changeBtn.addEventListener('click', function() {
+                localStorage.removeItem('username');
+                usernameText.textContent = '';
+                display.style.display = 'none';
+            });
+        }
+    ;
+    </script>
+
+    <script src="Clickable.js"></script>
+</body>
+</html>
