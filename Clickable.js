@@ -1,9 +1,9 @@
 // Venter til hele HTML-dokumentet er ferdig lastet før koden kjøres
 document.addEventListener('DOMContentLoaded', function() {
 	// Henter første element med klassen 'triangle' (trekanten)
-	var circle = document.querySelector('.triangle');
+	const circle = document.querySelector('.triangle');
 	// Henter containeren (grønn firkant) som har klassen 'center-square'
-	var container = document.querySelector('.center-square');
+	const container = document.querySelector('.center-square');
 	// Sjekker at både sirkel og container finnes før vi prøver å bruke dem
 	if (circle && container) {
 		// Legger til onclick-event på sirkelen
@@ -52,5 +52,6 @@ function moveToRandomPosition(circle, container) {
 	circle.style.top = top + 'px';
 	// Beholder transform: translate(-50%, -50%) slik at left/top er midtpunktet
 	circle.style.transform = 'translate(-50%, -50%)';
-}
 
+	
+}

@@ -127,7 +127,7 @@ body.fade-in {
 }
 
 
-/* Enkel boarder til entry */
+/* Enkel boarder til hver person og score */
 .leaderboard-entry {
     background: #d1e21022;
     color: #222;
@@ -143,7 +143,7 @@ body.fade-in {
 
 
 
-/* sirkelen som skal bli trykket på */
+/* Trekanten som skal bli trykket på */
  .triangle {
     width: 40px;
     height: 40px;
